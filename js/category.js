@@ -115,6 +115,7 @@ categoryForm.addEventListener("submit", function (e) {
   saveCategories(categories);
   renderCategories();
   closeCategoryModal();
+  updateDashboardCounters();
 });
 
 //delete category
@@ -134,6 +135,7 @@ function deleteCategory(id) {
   categories = categories.filter((c) => c.id !== id);
   saveCategories(categories);
   renderCategories();
+  updateDashboardCounters();
 }
 
 //edit button
