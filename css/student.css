@@ -1,103 +1,56 @@
-/* =============================
-   Student Dashboard Page
-============================= */
+/* Student Dashboard Specific Styles */
 
-/* Dashboard Hero */
-.dashboard-hero {
-  background-image: url("../assets/images/student-hero.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 40vh;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: white;
-  position: relative;
-}
-
-.dashboard-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.dashboard-hero .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.dashboard-hero h1 {
-  font-size: var(--fs-xl);
-  margin-bottom: 10px;
-}
-
-.dashboard-hero p {
-  font-size: var(--fs-md);
-}
-
-/* Student Courses */
-.student-courses {
-  padding: 60px 20px;
-  background: var(--bg-main);
-}
-
-.student-courses h2 {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.course-grid {
+#enrolledCoursesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
+  margin-top: 40px;
 }
 
-.course-card {
+.enrolled-course-card {
   background: var(--bg-white);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
   transition: var(--transition);
 }
 
-.course-card:hover {
-  transform: translateY(-5px);
+.enrolled-course-card:hover {
+  transform: translateY(-6px);
   box-shadow: var(--shadow-md);
 }
 
-.course-card img {
+.enrolled-course-card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
 }
 
-.course-card-content {
+.enrolled-course-card-content {
   padding: 20px;
-  text-align: center;
 }
 
-.course-card h3 {
-  margin-bottom: 10px;
+.enrolled-course-card h3 {
+  margin-bottom: 12px;
+  color: var(--primary);
 }
 
-/* Progress Bar */
-.progress-bar {
+.enrolled-course-card .progress-bar {
+  background: #e2e8f0;
+  border-radius: var(--radius-sm);
+  height: 10px;
   width: 100%;
-  height: 12px;
-  background: #eee;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  overflow: hidden;
+  margin: 10px 0;
 }
 
-.progress-fill {
-  height: 100%;
+.enrolled-course-card .progress-bar-fill {
   background: var(--primary);
-  width: 0%;
-  transition: width 0.5s ease-in-out;
+  height: 100%;
+  width: 0;
+  border-radius: var(--radius-sm);
+  transition: width 0.5s ease;
+}
+
+.enrolled-course-card button {
+  margin-top: 12px;
 }

@@ -1,0 +1,183 @@
+/* ================================
+   1. COURSE HERO
+================================ */
+.course-hero {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../assets/images/Hero.jpg") center/cover no-repeat; /* fallback hero image */
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-align: left;
+  padding-left: 50px;
+}
+
+.course-hero h1 {
+  font-size: var(--fs-xl);
+  margin-bottom: 20px;
+}
+
+.course-hero p {
+  font-size: var(--fs-md);
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.course-hero .btn {
+  padding: 14px 26px;
+  font-size: var(--fs-sm);
+}
+
+/* ================================
+   2. COURSE CONTENT
+================================ */
+.course-content {
+  background: var(--bg-main);
+}
+
+.course-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  background: var(--bg-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 600;
+}
+
+.tab-btn.active {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.tab-btn:hover {
+  background: var(--primary-dark);
+  color: #fff;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px 0;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ================================
+   3. INSTRUCTOR
+================================ */
+.instructor {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  background: var(--bg-white);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.instructor img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+
+.instructor h3 {
+  margin-bottom: 8px;
+  font-size: var(--fs-lg);
+}
+
+.instructor p {
+  color: var(--text-muted);
+}
+
+/* ================================
+   4. SYLLABUS / LESSONS
+================================ */
+.course-lessons ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.course-lessons li {
+  background: var(--bg-white);
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.course-lessons li strong {
+  display: block;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+/* ================================
+   5. REVIEWS
+================================ */
+.review {
+  background: var(--bg-white);
+  padding: 15px 20px;
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.review strong {
+  color: var(--primary);
+}
+
+/* ================================
+   6. ENROLL BUTTON / CTA
+================================ */
+.course-cta {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.course-cta .btn {
+  padding: 14px 28px;
+  font-size: var(--fs-md);
+}
+
+/* ================================
+   7. RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .course-hero {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .course-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .instructor {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .instructor img {
+    margin-bottom: 15px;
+  }
+
+  .course-tabs {
+    justify-content: center;
+  }
+}

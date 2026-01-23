@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Student Dashboard - E-Learning</title>
+    <title>Course Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/student.css" />
+    <link rel="stylesheet" href="css/course-details.css" />
   </head>
   <body>
     <!-- ================= HEADER ================= -->
@@ -16,29 +16,35 @@
           <a href="index.html">Home</a>
           <a href="courses.html">Courses</a>
           <a href="about.html">About</a>
-          <a href="#">Contact</a>
         </nav>
         <div class="auth-links">
-          <span class="welcome-msg"></span>
-          <button id="logoutBtn" class="btn btn-outline">Logout</button>
+          <a href="login.html" class="btn btn-outline">Login</a>
+          <a href="signup.html" class="btn btn-primary">Sign Up</a>
         </div>
       </div>
     </header>
 
-    <!-- ================= MAIN ================= -->
-    <main class="section container">
-      <h1 class="text-center">My Enrolled Courses</h1>
-      <div class="courses-grid" id="enrolledCoursesGrid">
-        <!-- Enrolled courses will be dynamically injected here -->
+    <!-- ================= HERO / COURSE TITLE ================= -->
+    <section class="course-hero">
+      <div class="container hero-content" id="courseHero">
+        <!-- Dynamic course hero will be injected here -->
       </div>
-    </main>
+    </section>
+
+    <!-- ================= COURSE CONTENT ================= -->
+    <section class="course-content section">
+      <div class="container" id="courseContent">
+        <!-- Dynamic tabs and content will be injected here -->
+      </div>
+    </section>
 
     <!-- ================= FOOTER ================= -->
     <footer>
       <p>© 2026 E-Learning Platform. All rights reserved.</p>
     </footer>
 
-    <script src="js/student.js"></script>
+    <script src="js/course-details.js"></script>
+    <script src="js/enroll.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

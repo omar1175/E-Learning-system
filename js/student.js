@@ -1,41 +1,69 @@
-// student.js: Student dashboard logic - wishlist, course progress, certificates
-// =============================
+// ================================
 // Student Dashboard JS
-// =============================
+// ================================
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Animate progress bars
-  const progressFills = document.querySelectorAll(".progress-fill");
+// Helper functions (reuse from enroll.js)
+function getUsers() {
+  return JSON.parse(localStorage.getItem("users")) || [];
+}
 
-  progressFills.forEach((fill) => {
-    const width = fill.style.width; // from HTML inline style (e.g., "50%")
-    fill.style.width = "0%"; // start from 0
-    setTimeout(() => {
-      fill.style.width = width; // animate to actual width
-    }, 300);
-  });
+function getLoggedInUser() {
+  const email = localStorage.getItem("loggedInUserEmail");
+  if (!email) return null;
 
-  // Optional: Filter courses (example)
-  const filterButtons = document.querySelectorAll(".filter-btn");
-  const courses = document.querySelectorAll(".course-card");
+  return getUsers().find((u) => u.email === email);
+}
 
-  if (filterButtons.length > 0) {
-    filterButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const filter = btn.dataset.filter;
+// DOM elements
+const enrolledCoursesGrid = document.getElementById("enrolledCoursesGrid");
+const welcomeMsg = document.querySelector(".welcome-msg");
+const logoutBtn = document.getElementById("logoutBtn");
 
-        courses.forEach((course) => {
-          if (filter === "all" || course.dataset.status === filter) {
-            course.style.display = "block";
-          } else {
-            course.style.display = "none";
-          }
-        });
+// Check login
+const user = getLoggedInUser();
 
-        // Highlight active button
-        filterButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-      });
-    });
-  }
+if (!user) {
+  alert("Please login to access the dashboard.");
+  window.location.href = "login.html";
+}
+
+// Display welcome
+welcomeMsg.textContent = `Welcome, ${user.firstName}`;
+
+// Logout logic
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("loggedInUserEmail");
+  window.location.href = "login.html";
 });
+
+// Render enrolled courses
+function renderEnrolledCourses() {
+  enrolledCoursesGrid.innerHTML = "";
+
+  if (!user.enrolledCourses.length) {
+    enrolledCoursesGrid.innerHTML =
+      "<p>You have not enrolled in any courses yet. <a href='courses.html'>Browse Courses</a></p>";
+    return;
+  }
+
+  user.enrolledCourses.forEach((course) => {
+    const courseCard = document.createElement("div");
+    courseCard.classList.add("enrolled-course-card");
+
+    courseCard.innerHTML = `
+      <img src="${course.image}" alt="${course.title}">
+      <div class="enrolled-course-card-content">
+        <h3>${course.title}</h3>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: ${course.progress || 0}%"></div>
+        </div>
+          <a href="course-details.html?id=${course.id}" class="btn btn-primary">View Course</a>
+      </div>
+    `;
+
+    enrolledCoursesGrid.appendChild(courseCard);
+  });
+}
+
+// Initial render
+renderEnrolledCourses();

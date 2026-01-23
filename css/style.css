@@ -313,3 +313,50 @@ footer {
     margin: 10px 0;
   }
 }
+
+/* ================================
+   WISHLIST BUTTON
+================================ */
+.wishlist-btn,
+#wish {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--secondary);
+  color: var(--secondary);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 5px;
+}
+
+.wishlist-btn:hover,
+#wish:hover {
+  background: var(--secondary);
+  color: var(--bg-white);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+.wishlist-btn:disabled,
+#wish:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  background: var(--bg-white);
+  color: var(--text-muted);
+  border-color: var(--text-muted);
+}
+
+/* Optional: Add heart icon before text */
+.wishlist-btn::before,
+#wish::before {
+  content: "♥"; /* heart icon */
+  font-size: 1rem;
+  color: var(--secondary);
+}

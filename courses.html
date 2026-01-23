@@ -21,8 +21,8 @@
         </nav>
 
         <div class="auth-links">
-          <a href="login.html">Login</a>
-          <a href="signup.html" class="btn btn-primary">Sign Up</a>
+          <a href="auth.html">Login</a>
+          <a href="auth.html" class="btn btn-primary">Sign Up</a>
         </div>
       </div>
     </header>
@@ -37,8 +37,8 @@
 
           <!-- Optional filters -->
           <div class="filters">
-            <input type="text" placeholder="Search courses..." />
-            <select>
+            <input type="text" placeholder="Search courses..." / id="searchInput">
+            <select id="categoryFilter">
               <option value="">All Categories</option>
               <option value="programming">Programming</option>
               <option value="webdesign">Web Design</option>
@@ -47,66 +47,12 @@
           </div>
         </div>
       </section>
+      <!-- course grid -->
+      <section class="container section">
+        <h1>All Courses</h1>
 
-      <!-- Courses Grid -->
-      <section class="section">
-        <div class="container course-grid">
-          <!-- Example Course Card -->
-          <div class="course-card">
-            <img src="assets/images/js.jpg" alt="JavaScript Basics" />
-            <div class="course-card-content">
-              <h3>JavaScript Basics</h3>
-              <p>
-                Learn the fundamentals of JavaScript programming and build
-                interactive websites.
-              </p>
-              <a href="course-details.html" class="btn btn-primary"
-                >View Course</a
-              >
-            </div>
-          </div>
-
-          <div class="course-card">
-            <img src="assets/images/html.jpg" alt="HTML & CSS" />
-            <div class="course-card-content">
-              <h3>HTML & CSS</h3>
-              <p>
-                Build modern, responsive websites from scratch using HTML and
-                CSS.
-              </p>
-              <a href="course-details.html" class="btn btn-primary"
-                >View Course</a
-              >
-            </div>
-          </div>
-
-          <div class="course-card">
-            <img src="assets/images/python.jpg" alt="Python for Beginners" />
-            <div class="course-card-content">
-              <h3>Python for Beginners</h3>
-              <p>
-                Start coding with Python step by step and learn to build simple
-                applications.
-              </p>
-              <a href="course-details.html" class="btn btn-primary"
-                >View Course</a
-              >
-            </div>
-          </div>
-
-          <div class="course-card">
-            <img src="assets/images/react.jpg" alt="React JS" />
-            <div class="course-card-content">
-              <h3>React JS Essentials</h3>
-              <p>
-                Learn React to build dynamic and interactive web applications.
-              </p>
-              <a href="course-details.html" class="btn btn-primary"
-                >View Course</a
-              >
-            </div>
-          </div>
-        </div>
+        <!--  Dynamic container -->
+        <div class="courses-grid" id="coursesGrid"></div>
       </section>
     </main>
 
@@ -114,5 +60,8 @@
     <footer>
       <p>© 2026 E-Learning Platform. All rights reserved.</p>
     </footer>
+    <script src="js/courses.js"></script>
+        <script src="js/main.js"></script>
+
   </body>
 </html>

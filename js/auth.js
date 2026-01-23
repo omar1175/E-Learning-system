@@ -112,6 +112,8 @@ registerForm.addEventListener("submit", function (e) {
 
   users.push(newuser);
   localStorage.setItem("users", JSON.stringify(users));
+  // mark user as logged in
+  localStorage.setItem("loggedInUserEmail", newuser.email);
   registerForm.reset();
 
   if (newuser.role === "admin") window.location.href = "admin.html";
@@ -146,6 +148,8 @@ loginForm.addEventListener("submit", (e) => {
     document.querySelector(".loginPassErr").classList.add("show");
     return;
   }
+  // save logged in user
+  localStorage.setItem("loggedInUserEmail", user.email);
 
   //redirect based on role
   if (user.role === "admin") window.location.href = "admin.html";
