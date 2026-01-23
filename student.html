@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Dashboard - E-Learning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/student.css" />
+  </head>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+      <div class="container navbar">
+        <a href="index.html" class="logo">E-Learning</a>
+
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="courses.html">Courses</a>
+          <a href="about.html">About</a>
+          <a href="#">Contact</a>
+        </nav>
+
+        <div class="auth-links">
+          <a href="logout.html" class="btn btn-outline">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= DASHBOARD HERO ================= -->
+    <section class="dashboard-hero">
+      <div class="container hero-content">
+        <h1>Welcome, Omar!</h1>
+        <p>Track your courses and continue learning.</p>
+      </div>
+    </section>
+
+    <!-- ================= STUDENT COURSES ================= -->
+    <section class="student-courses section">
+      <div class="container">
+        <h2>My Courses</h2>
+
+        <div class="course-grid">
+          <!-- Example Student Course Card -->
+          <div class="course-card">
+            <img src="assets/images/js.jpg" alt="JavaScript Basics" />
+            <div class="course-card-content">
+              <h3>JavaScript Basics</h3>
+              <p>Progress: <span class="progress">50%</span></p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 50%"></div>
+              </div>
+              <a href="course-details.html" class="btn btn-primary">Continue</a>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <img src="assets/images/html.jpg" alt="HTML & CSS" />
+            <div class="course-card-content">
+              <h3>HTML & CSS</h3>
+              <p>Progress: <span class="progress">80%</span></p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 80%"></div>
+              </div>
+              <a href="course-details.html" class="btn btn-primary">Continue</a>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <img src="assets/images/python.jpg" alt="Python for Beginners" />
+            <div class="course-card-content">
+              <h3>Python for Beginners</h3>
+              <p>Progress: <span class="progress">30%</span></p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 30%"></div>
+              </div>
+              <a href="course-details.html" class="btn btn-primary">Continue</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <p>© 2026 E-Learning Platform. All rights reserved.</p>
+    </footer>
+    <script src="js/student.js"></script>
+  </body>
+</html>
