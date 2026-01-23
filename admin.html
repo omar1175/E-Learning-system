@@ -5,6 +5,7 @@
     <title>Admin Dashboard - E-Learning</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/admin.css" />
     <style>
       /* Simple admin dashboard styles */
       body {
@@ -148,7 +149,7 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="coursesTableBody">
             <tr>
               <td>JavaScript Basics</td>
               <td>Programming</td>
@@ -170,7 +171,9 @@
           </tbody>
         </table>
         <br />
-        <button class="btn btn-primary">Add New Course</button>
+        <button class="btn btn-primary" onclick="openAddForm()">
+          Add New Course
+        </button>
       </div>
 
       <!-- Example table for categories -->
@@ -204,5 +207,52 @@
         <button class="btn btn-primary">Add New Category</button>
       </div>
     </div>
+
+    <!-- ===== COURSE FORM MODAL ===== -->
+    <div id="courseModal" class="modal hidden">
+      <div class="modal-content">
+        <h2 id="formTitle">Add Course</h2>
+
+        <form id="courseForm">
+          <input type="hidden" id="courseId" />
+
+          <label>Title</label>
+          <input type="text" id="title" />
+          <span class="error" id="titleError"></span>
+
+          <label>Description</label>
+          <textarea id="description"></textarea>
+          <span class="error" id="descriptionError"></span>
+
+          <label>Image URL</label>
+          <input type="text" id="image" />
+          <span class="error" id="imageError"></span>
+
+          <label>Category</label>
+          <input type="text" id="category" />
+          <span class="error" id="categoryError"></span>
+
+          <label>Instructor</label>
+          <input type="text" id="instructor" />
+          <span class="error" id="instructorError"></span>
+
+          <label>Instructor Bio</label>
+          <textarea id="instructorBio"></textarea>
+
+          <div class="actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button
+              type="button"
+              class="btn btn-outline"
+              onclick="closeModal()"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/course.js"></script>
   </body>
 </html>

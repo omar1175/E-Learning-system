@@ -1,1 +1,41 @@
-/* admin.css: Admin-specific styles */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+}
+
+.modal-content label {
+  margin-top: 10px;
+  display: block;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.actions {
+  margin-top: 15px;
+  text-align: right;
+}
