@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+}
+.register {
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.register input {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+}
+.register input[type="radio"] {
+  display: inline;
+  width: fit-content;
+}
+.register input[type="submit"] {
+  background-color: #4f46e5;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 4px;
+  padding: 8px 4px;
+}
+.register input[type="submit"]:hover {
+  transition: 0.2s;
+  background-color: #4338ca;
+  cursor: pointer;
+}
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+.error {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  background: #ff4d4d;
+  color: white;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(5px);
+  transition: 0.3s;
+}
+.error::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 15px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ff4d4d transparent transparent transparent;
+}
+.error.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+#loginForm {
+  display: none;
+}
+#showRegister {
+  display: none;
+}
+.toggleAuth a {
+  text-decoration: none;
+}

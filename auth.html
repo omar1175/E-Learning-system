@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/auth.css" />
+  </head>
+  <body>
+    <nav>
+      <img src="images/logo.png" alt="" width="150px" />
+    </nav>
+    <div class="register">
+      <form action="#" id="registerForm">
+        <label for="Fname">First Name:</label>
+        <div class="input-group">
+          <input type="text" name="Fname" id="Fname" />
+          <span class="fNameErr error"
+            >Name must be only letters and more than 3 charachters</span
+          >
+        </div>
+
+        <label for="Lname">Last Name:</label>
+        <div class="input-group">
+          <input type="text" name="Lname" id="Lname" />
+          <span class="lNameErr error"
+            >Name must be only letters and more than 3 charachters</span
+          >
+        </div>
+
+        <label for="mail">Email:</label>
+        <div class="input-group">
+          <input type="email" name="email" id="mail" />
+          <span class="emailErr error"
+            >Please enter a valid email in the format: example@domain.com</span
+          >
+        </div>
+
+        <label for="pass">Password:</label>
+        <div class="input-group">
+          <input type="password" name="password" id="pass" />
+          <span class="passErr error"
+            >Password must be 8+ chars, include upper, lower, number &
+            symbol</span
+          >
+        </div>
+
+        <label for="confirmPass">Confirm Password:</label>
+        <div class="input-group">
+          <input type="password" name="confirm" id="confirmPass" />
+          <span class="ConPassErr error">Passwords do not match</span>
+        </div>
+
+        <div class="role input-group">
+          <input type="radio" name="role" id="admin" value="admin" />
+          <label for="admin">Admin</label>
+          <input type="radio" name="role" id="student" value="student" />
+          <label for="student">Student</label>
+          <span class="typeErr error">Please select a role</span>
+        </div>
+
+        <input type="submit" id="submitBtn" value="Register" />
+      </form>
+
+      <!-- Login Form -->
+      <form action="#" id="loginForm">
+        <label for="loginEmail">Email:</label>
+        <div class="input-group">
+          <input type="email" id="loginEmail" />
+          <span class="loginEmailErr error">Invalid email or password</span>
+        </div>
+
+        <label for="loginPass">Password:</label>
+        <div class="input-group">
+          <input type="password" id="loginPass" />
+          <span class="loginPassErr error">Invalid email or password</span>
+        </div>
+
+        <input type="submit" value="Login" />
+      </form>
+
+      <!-- Toggle Links -->
+      <p class="toggleAuth">
+        <a href="#" id="showLogin">Already have an account? Login</a>
+        <a href="#" id="showRegister">New? Register</a>
+      </p>
+    </div>
+
+    <script src="js/auth.js"></script>
+  </body>
+</html>
