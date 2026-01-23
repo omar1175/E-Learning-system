@@ -1,0 +1,161 @@
+/* ================================
+   About Page Specific Styles
+================================ */
+
+/* Hero Section */
+.about-hero {
+  background-image: url("../assets/images/about.jpg"); /* your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: white;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.about-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.about-hero .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Mission & Vision */
+.mission h2 {
+  font-size: var(--fs-lg);
+  margin-bottom: 10px;
+}
+
+.mission p {
+  font-size: var(--fs-md);
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+/* Team Section */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.team-member {
+  background: var(--bg-white);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.team-member:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.team-member img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+}
+
+.team-member h3 {
+  margin-bottom: 6px;
+}
+
+.team-member p {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+/* CTA Section Override */
+.cta {
+  padding: 60px 0;
+}
+
+.cta h2 {
+  margin-bottom: 20px;
+}
+
+/* Mission & Vision Section */
+.mission-vision-section {
+  padding: 80px 20px;
+  background-color: #f5f7fa;
+  font-family: "Arial", sans-serif;
+}
+
+.mission-vision-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mission-vision-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #1a1a1a;
+}
+
+.mission-vision-section .cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.mission-vision-section .card {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 30px 20px;
+  flex: 1 1 300px;
+  max-width: 450px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.mission-vision-section .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.mission-vision-section .card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #0077cc;
+}
+
+.mission-vision-section .card p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Different colors for Mission and Vision cards */
+.mission-vision-section .card.mission {
+  border-top: 4px solid #28a745; /* green */
+}
+
+.mission-vision-section .card.vision {
+  border-top: 4px solid #ff6f61; /* coral */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mission-vision-section .cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

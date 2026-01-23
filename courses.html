@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Courses - E-Learning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/courses.css" />
+  </head>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+      <div class="container navbar">
+        <a href="index.html" class="logo">E-Learning</a>
+
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="courses.html" class="active">Courses</a>
+          <a href="about.html">About</a>
+          <a href="#">Contact</a>
+        </nav>
+
+        <div class="auth-links">
+          <a href="login.html">Login</a>
+          <a href="signup.html" class="btn btn-primary">Sign Up</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main>
+      <!-- Courses Page Header -->
+      <section class="courses-header">
+        <div class="container">
+          <h1>All Courses</h1>
+          <p>Browse through our wide range of online courses.</p>
+
+          <!-- Optional filters -->
+          <div class="filters">
+            <input type="text" placeholder="Search courses..." />
+            <select>
+              <option value="">All Categories</option>
+              <option value="programming">Programming</option>
+              <option value="webdesign">Web Design</option>
+              <option value="python">Python</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Courses Grid -->
+      <section class="section">
+        <div class="container course-grid">
+          <!-- Example Course Card -->
+          <div class="course-card">
+            <img src="assets/images/js.jpg" alt="JavaScript Basics" />
+            <div class="course-card-content">
+              <h3>JavaScript Basics</h3>
+              <p>
+                Learn the fundamentals of JavaScript programming and build
+                interactive websites.
+              </p>
+              <a href="course-details.html" class="btn btn-primary"
+                >View Course</a
+              >
+            </div>
+          </div>
+
+          <div class="course-card">
+            <img src="assets/images/html.jpg" alt="HTML & CSS" />
+            <div class="course-card-content">
+              <h3>HTML & CSS</h3>
+              <p>
+                Build modern, responsive websites from scratch using HTML and
+                CSS.
+              </p>
+              <a href="course-details.html" class="btn btn-primary"
+                >View Course</a
+              >
+            </div>
+          </div>
+
+          <div class="course-card">
+            <img src="assets/images/python.jpg" alt="Python for Beginners" />
+            <div class="course-card-content">
+              <h3>Python for Beginners</h3>
+              <p>
+                Start coding with Python step by step and learn to build simple
+                applications.
+              </p>
+              <a href="course-details.html" class="btn btn-primary"
+                >View Course</a
+              >
+            </div>
+          </div>
+
+          <div class="course-card">
+            <img src="assets/images/react.jpg" alt="React JS" />
+            <div class="course-card-content">
+              <h3>React JS Essentials</h3>
+              <p>
+                Learn React to build dynamic and interactive web applications.
+              </p>
+              <a href="course-details.html" class="btn btn-primary"
+                >View Course</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <p>© 2026 E-Learning Platform. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

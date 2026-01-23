@@ -1,1 +1,315 @@
-/* style.css: Common styles for all pages */
+/* ================================
+   1. GLOBAL VARIABLES (DESIGN SYSTEM)
+================================ */
+:root {
+  /* Colors */
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --secondary: #22c55e;
+  --danger: #ef4444;
+
+  --bg-main: #f5f7fb;
+  --bg-white: #ffffff;
+  --bg-dark: #0f172a;
+
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #f8fafc;
+
+  /* Typography */
+  --font-main: "Inter", system-ui, sans-serif;
+
+  --fs-xl: 3rem;
+  --fs-lg: 2rem;
+  --fs-md: 1.2rem;
+  --fs-sm: 0.95rem;
+
+  /* Spacing */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+  /* Transition */
+  --transition: 0.3s ease;
+}
+
+/* ================================
+   2. RESET & BASE STYLES
+================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ================================
+   3. LAYOUT HELPERS
+================================ */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ================================
+   4. BUTTONS (REUSABLE)
+================================ */
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-outline {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* ================================
+   5. NAVBAR
+================================ */
+.site-header {
+  background: var(--bg-white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.nav-links a {
+  margin: 0 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+.auth-links a {
+  margin-left: 16px;
+}
+
+/* ================================
+   6. HERO SECTION
+================================ */
+.hero {
+  background-image: url("../assets/images/Hero.jpg"); /* path to your image */
+  background-size: cover; /* image covers entire section */
+  background-position: center; /* centers the image */
+  background-repeat: no-repeat;
+  min-height: 90vh; /* almost full viewport height */
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: white;
+  text-align: left;
+  padding-left: 50px; /* space from left edge */
+}
+
+/* Optional: dark overlay for text readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* adjust darkness (0.4 = 40%) */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: var(--fs-xl);
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: var(--fs-md);
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+/* ================================
+   7. FEATURES SECTION
+================================ */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background: var(--bg-white);
+  padding: 30px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+}
+
+.feature-card h3 {
+  margin-bottom: 10px;
+}
+
+/* ================================
+   8. COURSES SECTION
+================================ */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.course-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+}
+
+.course-card img {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.course-card-content {
+  padding: 20px;
+}
+
+.course-card h3 {
+  margin-bottom: 8px;
+}
+
+.course-card p {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  margin-bottom: 14px;
+}
+
+/* ================================
+   9. CTA SECTION
+================================ */
+.cta {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  padding: 80px 0;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: var(--fs-lg);
+  margin-bottom: 16px;
+}
+
+.cta p {
+  opacity: 0.8;
+  margin-bottom: 30px;
+}
+
+/* ================================
+   10. FOOTER
+================================ */
+footer {
+  background: #020617;
+  color: #94a3b8;
+  text-align: center;
+  padding: 30px 0;
+  font-size: var(--fs-sm);
+}
+
+/* ================================
+   11. RESPONSIVE TWEAKS
+================================ */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 16px 0;
+  }
+
+  .nav-links {
+    margin: 10px 0;
+  }
+}

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard - E-Learning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* Simple admin dashboard styles */
+      body {
+        display: flex;
+        min-height: 100vh;
+        background: var(--bg-main);
+        font-family: var(--font-main);
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 220px;
+        background: var(--primary);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .sidebar h2 {
+        margin-bottom: 30px;
+        font-size: 1.5rem;
+      }
+
+      .sidebar a {
+        color: white;
+        text-decoration: none;
+        margin: 10px 0;
+        font-weight: 500;
+        padding: 10px;
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+      }
+
+      .sidebar a:hover {
+        background: var(--primary-dark);
+      }
+
+      /* Main content */
+      .main-content {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .main-content h1 {
+        margin-bottom: 20px;
+      }
+
+      /* Card style for dashboard items */
+      .card {
+        background: var(--bg-white);
+        padding: 20px;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: 20px;
+      }
+
+      /* Table styling */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      table th,
+      table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      table th {
+        background: var(--primary);
+        color: white;
+      }
+
+      /* Buttons */
+      .btn {
+        padding: 6px 12px;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        font-weight: 500;
+        margin-right: 5px;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--primary);
+        color: var(--primary);
+      }
+
+      .btn-outline:hover {
+        background: var(--primary);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+      <h2>Admin Panel</h2>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#courses">Courses</a>
+      <a href="#categories">Categories</a>
+      <a href="#students">Students</a>
+      <a href="#settings">Settings</a>
+      <a href="index.html">Back to Site</a>
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <div class="main-content">
+      <h1>Dashboard</h1>
+
+      <!-- Example cards -->
+      <div class="card">
+        <h3>Total Courses</h3>
+        <p>12 Courses</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Students</h3>
+        <p>150 Students</p>
+      </div>
+
+      <!-- Example table for courses -->
+      <div class="card" id="courses">
+        <h3>Manage Courses</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Course Name</th>
+              <th>Category</th>
+              <th>Instructor</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>JavaScript Basics</td>
+              <td>Programming</td>
+              <td>Omar Abdelstar</td>
+              <td>
+                <button class="btn btn-primary">Edit</button>
+                <button class="btn btn-outline">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>HTML & CSS</td>
+              <td>Web Design</td>
+              <td>Omar Abdelstar</td>
+              <td>
+                <button class="btn btn-primary">Edit</button>
+                <button class="btn btn-outline">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <button class="btn btn-primary">Add New Course</button>
+      </div>
+
+      <!-- Example table for categories -->
+      <div class="card" id="categories">
+        <h3>Manage Categories</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Category Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Programming</td>
+              <td>
+                <button class="btn btn-primary">Edit</button>
+                <button class="btn btn-outline">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Web Design</td>
+              <td>
+                <button class="btn btn-primary">Edit</button>
+                <button class="btn btn-outline">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <button class="btn btn-primary">Add New Category</button>
+      </div>
+    </div>
+  </body>
+</html>
