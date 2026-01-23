@@ -65,6 +65,7 @@ function deleteCourse(id) {
 
   saveCourses(courses);
   renderCourses();
+  updateDashboardCounters();
 }
 //--------------------------
 const modal = document.getElementById("courseModal");
@@ -168,6 +169,7 @@ document.getElementById("courseForm").addEventListener("submit", function (e) {
   saveCourses(courses);
   renderCourses();
   closeModal();
+  updateDashboardCounters();
 });
 
 function editCourse(id) {
