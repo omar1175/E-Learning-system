@@ -19,26 +19,88 @@
           <a href="#">Contact</a>
         </nav>
         <div class="auth-links">
-          <span class="welcome-msg"></span>
+          <span class="welcome-msg" id="welcomeUser"></span>
           <button id="logoutBtn" class="btn btn-outline">Logout</button>
         </div>
       </div>
     </header>
 
-    <!-- ================= MAIN ================= -->
-    <main class="section container">
-      <h1 class="text-center">My Enrolled Courses</h1>
-      <div class="courses-grid" id="enrolledCoursesGrid">
-        <!-- Enrolled courses will be dynamically injected here -->
+    <!-- ================= DASHBOARD ================= -->
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo">Dashboard</div>
+        <nav class="sidebar-nav">
+          <button class="sidebar-btn active" data-tab="my-courses">
+            My Courses
+          </button>
+          <button class="sidebar-btn" data-tab="wishlist">Wishlist</button>
+          <button class="sidebar-btn" data-tab="profile">Profile</button>
+          <button id="logoutSidebarBtn" class="btn btn-outline">Logout</button>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="dashboard-content">
+        <!-- My Courses Tab -->
+        <section id="my-courses" class="tab-content active">
+          <h2>My Enrolled Courses</h2>
+          <div class="courses-grid" id="enrolledCoursesGrid">
+            <!-- Enrolled courses will be dynamically injected here -->
+          </div>
+        </section>
+
+        <!-- Wishlist Tab -->
+        <section id="wishlist" class="tab-content">
+          <h2>My Wishlist</h2>
+          <div class="courses-grid" id="wishlistGrid">
+            <!-- Wishlist courses will be dynamically injected here -->
+          </div>
+        </section>
+
+    <!-- Profile Tab -->
+<section id="profile" class="tab-content">
+  <h2>My Profile</h2>
+
+  <div class="profile-card">
+    <div class="profile-image">
+      <img id="profilePic" src="assets/images/default-avatar.png" alt="Profile Picture">
+      <input type="file" id="profilePicInput" accept="image/*">
+    </div>
+
+    <div class="profile-info">
+      <div class="input-group">
+        <label for="editFirstName">First Name</label>
+        <input type="text" id="editFirstName">
       </div>
-    </main>
+      <div class="input-group">
+        <label for="editLastName">Last Name</label>
+        <input type="text" id="editLastName">
+      </div>
+      <div class="input-group">
+        <label for="editEmail">Email</label>
+        <input type="email" id="editEmail">
+      </div>
+      <div class="input-group">
+        <label for="editPassword">Password</label>
+        <input type="password" id="editPassword" placeholder="Leave blank to keep current">
+      </div>
+
+      <button id="saveProfileBtn" class="btn btn-primary">Save Changes</button>
+    </div>
+  </div>
+
+  <p id="profileMsg" style="margin-top:15px;color:green;"></p>
+</section>
+
 
     <!-- ================= FOOTER ================= -->
     <footer>
       <p>© 2026 E-Learning Platform. All rights reserved.</p>
     </footer>
 
-    <script src="js/student.js"></script>
+    <!-- ================= SCRIPTS ================= -->
     <script src="js/main.js"></script>
+    <script src="js/student.js"></script>
   </body>
 </html>
