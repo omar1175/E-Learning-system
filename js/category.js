@@ -119,11 +119,19 @@ categoryForm.addEventListener("submit", function (e) {
 
 //delete category
 function deleteCategory(id) {
+  const category = getCategories().find((c) => c.id === id);
+  const courses = getCourses();
+
+  const used = courses.some((course) => course.category === category.name);
+  if (used) {
+    alert("Cannot delete this category because it's used in a course!");
+    return;
+  }
+
   if (!confirm("Delete this category?")) return;
 
   let categories = getCategories();
   categories = categories.filter((c) => c.id !== id);
-
   saveCategories(categories);
   renderCategories();
 }

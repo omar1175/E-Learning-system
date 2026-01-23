@@ -75,6 +75,7 @@ function openAddForm() {
   document.getElementById("courseForm").reset();
   document.getElementById("courseId").value = "";
   clearErrors();
+  populateCategoryDropdown();
   modal.classList.remove("hidden");
 }
 //edit courses form
@@ -85,11 +86,11 @@ function openEditForm(course) {
   title.value = course.title;
   description.value = course.description;
   image.value = course.image;
-  category.value = course.category;
   instructor.value = course.instructor;
   instructorBio.value = course.instructorBio;
-
   clearErrors();
+  populateCategoryDropdown();
+  categorySelect.value = course.category;
   modal.classList.remove("hidden");
 }
 //for closing courses add/edit form
@@ -119,7 +120,7 @@ function validateForm() {
     valid = false;
   }
 
-  if (!category.value.trim()) {
+  if (!categorySelect.value.trim()) {
     categoryError.textContent = "Category is required";
     valid = false;
   }
@@ -147,7 +148,7 @@ document.getElementById("courseForm").addEventListener("submit", function (e) {
     course.title = title.value;
     course.description = description.value;
     course.image = image.value;
-    course.category = category.value;
+    course.category = categorySelect.value;
     course.instructor = instructor.value;
     course.instructorBio = instructorBio.value;
   } else {
@@ -157,7 +158,7 @@ document.getElementById("courseForm").addEventListener("submit", function (e) {
       title: title.value,
       description: description.value,
       image: image.value,
-      category: category.value,
+      category: categorySelect.value,
       instructor: instructor.value,
       instructorBio: instructorBio.value,
       lessons: [],
@@ -173,4 +174,22 @@ function editCourse(id) {
   const course = getCourses().find((c) => c.id === id);
   if (!course) return;
   openEditForm(course);
+}
+
+//add Category list
+const categorySelect = document.getElementById("categorySelect");
+
+function populateCategoryDropdown(selectedId = null) {
+  const categories = getCategories();
+  categorySelect.innerHTML = "";
+
+  categories.forEach((cat) => {
+    const option = document.createElement("option");
+    option.value = cat.name;
+    option.textContent = cat.name;
+    if (selectedId && selectedId == cat.id) {
+      option.selected = true;
+    }
+    categorySelect.appendChild(option);
+  });
 }
