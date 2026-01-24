@@ -18,6 +18,7 @@ function saveCourses(courses) {
         description:
           "Master HTML, CSS, JavaScript, and modern web development from scratch",
         category: "web",
+        image: "https://picsum.photos/300/200?random=6",
         instructor: "Sohyla Gomaa",
         instructorBio: "Full Stack Developer",
         lessons: [
@@ -132,7 +133,7 @@ function openEditForm(course) {
   courseId.value = course.id;
   title.value = course.title;
   description.value = course.description;
-  //image.value = course.image;
+  image.value = course.image;
   instructor.value = course.instructor;
   instructorBio.value = course.instructorBio;
   clearErrors();
@@ -196,7 +197,7 @@ document.getElementById("courseForm").addEventListener("submit", function (e) {
     const course = courses.find((c) => c.id == id);
     course.title = title.value;
     course.description = description.value;
-    //course.image = image.value;
+    course.image = image.value;
     course.category = categorySelect.value;
     course.instructor = instructor.value;
     course.instructorBio = instructorBio.value;
@@ -207,7 +208,7 @@ document.getElementById("courseForm").addEventListener("submit", function (e) {
       id: Date.now(),
       title: title.value,
       description: description.value,
-      //image: image.value,
+      image: image.value,
       category: categorySelect.value,
       instructor: instructor.value,
       instructorBio: instructorBio.value,
