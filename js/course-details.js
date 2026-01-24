@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const hero = document.getElementById("courseHero");
   const content = document.getElementById("courseContent");
-  const role = localStorage.getItem("userRole");
   const params = new URLSearchParams(window.location.search);
   const courseId = Number(params.get("id"));
 
@@ -16,8 +15,27 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // get Data
   let course;
+  function getCurrentUserRole() {
+    // 1. Get the list of ALL users
+    // (Note: I added the missing '}' to your JSON in logic below)
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // 2. Get the email of the currently logged-in user
+    const loggedInEmail = localStorage.getItem("loggedInUserEmail");
+
+    if (!loggedInEmail) return null; // No one is logged in
+
+    // 3. Find the specific user object that matches the email
+    const currentUser = users.find((u) => u.email === loggedInEmail);
+
+    // 4. Return their role (or null if user not found)
+    return currentUser ? currentUser.role : null;
+  }
+
+  // --- USAGE ---
+  const role = getCurrentUserRole();
+
   let unifiedData = JSON.parse(localStorage.getItem("eLearningData"));
 
   if (unifiedData && unifiedData.courses) {

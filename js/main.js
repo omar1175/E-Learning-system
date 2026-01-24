@@ -1,3 +1,15 @@
+function getCurrentUserRole() {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  const loggedInEmail = localStorage.getItem("loggedInUserEmail");
+
+  if (!loggedInEmail) return null;
+
+  const currentUser = users.find((u) => u.email === loggedInEmail);
+
+  return currentUser ? currentUser.role : null;
+}
+
 function sendData(courseId) {
   const email = localStorage.getItem("loggedInUserEmail");
   if (!email) {
@@ -5,10 +17,9 @@ function sendData(courseId) {
     window.location.href = "auth.html";
     return;
   }
-
+  const role = getCurrentUserRole();
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const user = users.find((u) => u.email === email);
-
   if (!user) {
     alert("User not found. Please login again.");
     localStorage.removeItem("loggedInUserEmail");
@@ -45,11 +56,11 @@ function sendData(courseId) {
 }
 
 // navbar update based on login
-const role = localStorage.getItem("userRole");
 
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInEmail = localStorage.getItem("loggedInUserEmail");
   const authLinks = document.getElementById("authLinks");
+  const role = getCurrentUserRole();
 
   if (loggedInEmail && authLinks) {
     const users = JSON.parse(localStorage.getItem("users")) || [];
