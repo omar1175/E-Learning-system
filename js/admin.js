@@ -20,38 +20,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateDashboardCounters();
 });
-
-function renderStudentsProgress() {
-  const students = getUsers().filter((u) => u.role === "student");
-
-  studentsTableBody.innerHTML = "";
-
-  students.forEach((student) => {
-    let coursesHTML = "No courses";
-
-    if (student.enrolledCourses && student.enrolledCourses.length > 0) {
-      coursesHTML = student.enrolledCourses
-        .map((course) => {
-          return `
-          <div style="margin-bottom:8px">
-            <strong>${course.title}</strong><br>
-            Progress: ${course.progress}% 
-            ${course.progress === 100 ? "✅ Completed" : "⏳ In progress"}
-          </div>
-        `;
-        })
-        .join("");
-    }
-
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${student.firstName} ${student.lastName}</td>
-      <td>${student.email}</td>
-      <td>${coursesHTML}</td>
-    `;
-
-    studentsTableBody.appendChild(tr);
-  });
-}
-
-renderStudentsProgress();
