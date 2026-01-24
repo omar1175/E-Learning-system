@@ -104,15 +104,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (welcomeUser) welcomeUser.textContent = `Hi, ${user.firstName}`;
   });
 
+  //================= render enrolled courses ==========//
   const enrolledGrid = document.getElementById("enrolledCoursesGrid");
-
   function renderEnrolledCourses() {
     enrolledGrid.innerHTML = "";
 
+    // 1. Get the specific user's enrollments
     const userEnrollmentsKey = `enrolledCourses_${user.email}`;
     const enrolledCourses =
       JSON.parse(localStorage.getItem(userEnrollmentsKey)) || [];
 
+    // 2. Handle Empty State
     if (enrolledCourses.length === 0) {
       enrolledGrid.innerHTML = `
         <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
@@ -122,11 +124,26 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // 3. Render Cards
     enrolledCourses.forEach((course) => {
       const card = document.createElement("div");
       card.className = "course-card";
 
+      // Safe check for progress (default to 0 if missing)
       const progress = course.progress || 0;
+
+      // Dynamic Button Text (Start vs Continue)
+      const btnText =
+        progress === 0 ? "▶ Start Course" : "⏯ Continue Learning";
+
+      // Dynamic Button Class (Optional: Change color based on status)
+      const btnStyle =
+        progress === 0
+          ? "background-color: #667eea;"
+          : "background-color: #28a745;";
+
+      // URL Encode the title for the link (handles spaces safely)
+      const courseUrl = `playlist.html?title=${encodeURIComponent(course.title)}`;
 
       card.innerHTML = `
         <div style="position: relative;">
@@ -146,14 +163,17 @@ document.addEventListener("DOMContentLoaded", () => {
              <span>${progress}% Complete</span>
           </div>
 
-          <a href="course-details.html?id=${course.id}" class="btn btn-primary" style="display: block; text-align: center;">Continue Learning</a>
+          <a href="${courseUrl}" class="btn btn-primary" style="display: block; text-align: center; ${btnStyle}">
+            ${btnText}
+          </a>
         </div>
       `;
       enrolledGrid.appendChild(card);
     });
   }
-
   renderEnrolledCourses();
+
+  //================ render wishList ======================//
 
   const wishlistGrid = document.getElementById("wishlistGrid");
 
