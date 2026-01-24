@@ -108,6 +108,46 @@
         background: var(--primary);
         color: white;
       }
+
+      /* Container that holds all lessons */
+      #lessonsContainer {
+        max-height: 200px; /* Maximum height before scrolling starts */
+        overflow-y: auto; /* Adds scrollbar automatically */
+        border: 1px solid #ddd; /* visual border */
+        border-radius: 5px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        margin-bottom: 20px;
+
+        /* Optional: Smooth scrolling */
+        scroll-behavior: smooth;
+      }
+
+      /* Individual Lesson Card Style */
+      .lesson-item {
+        background: white;
+        padding: 15px;
+        border: 1px solid #eee;
+        border-left: 4px solid #667eea; /* Color accent */
+        margin-bottom: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .lesson-item label {
+        font-weight: bold;
+        font-size: 0.9em;
+        margin-top: 10px;
+        display: block;
+      }
+
+      .lesson-item input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
     </style>
   </head>
   <body>

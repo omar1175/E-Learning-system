@@ -11,6 +11,29 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCourseData();
 });
 
+//helper function
+
+function convertToEmbedUrl(url) {
+  if (!url) return "";
+
+  // Case 1: Already an embed link
+  if (url.includes("/embed/")) return url;
+
+  // Case 2: Short URL (youtu.be/ID)
+  if (url.includes("youtu.be/")) {
+    const id = url.split("youtu.be/")[1].split("?")[0];
+    return `https://www.youtube.com/embed/${id}`;
+  }
+
+  // Case 3: Standard URL (youtube.com/watch?v=ID)
+  if (url.includes("v=")) {
+    const id = url.split("v=")[1].split("&")[0];
+    return `https://www.youtube.com/embed/${id}`;
+  }
+
+  return url; // Return original if pattern doesn't match
+}
+
 // Load Course Data
 function loadCourseData() {
   // 1. Get Course ID from URL
@@ -35,8 +58,7 @@ function loadCourseData() {
   // We map your 'lessons' array to the 'videos' format the player uses
   const playerVideos = (foundCourse.lessons || []).map((lesson) => ({
     title: lesson.title,
-    url: lesson.video, // Maps 'video' from your object to 'url' for the iframe
-    duration: lesson.duration || "10:00",
+    url: convertToEmbedUrl(lesson.video), // <--- THIS FIXED THE ERROR    duration: lesson.duration || "10:00",
     description: lesson.description || "",
   }));
 
@@ -113,6 +135,7 @@ function playVideo(index) {
   const video = state.courseData.videos[index];
 
   document.getElementById("videoPlayer").src = video.url;
+  console.log(video.url);
   document.getElementById("currentVideoTitle").textContent = video.title;
 
   // Update Active Styling

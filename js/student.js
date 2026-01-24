@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
           : "background-color: #28a745;";
 
       // URL Encode the title for the link (handles spaces safely)
-      const courseUrl = `playlist.html?title=${encodeURIComponent(course.title)}`;
+      const courseUrl = `playlist.html?id=${encodeURIComponent(course.id)}`;
 
       card.innerHTML = `
         <div style="position: relative;">

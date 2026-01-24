@@ -63,29 +63,29 @@ function renderCourses() {
   });
 }
 renderCourses();
-///
-const lessonsContainer = document.getElementById("lessonsContainer");
 
+const lessonsContainer = document.getElementById("lessonsContainer");
 function addLessonField(lesson = {}) {
   const div = document.createElement("div");
   div.classList.add("lesson-item");
 
   div.innerHTML = `
-    <label>Lesson Title</label>
-    <input type="text" class="lesson-title" value="${lesson.title || ""}" />
+    <input type="text" class="lesson-title" value="${lesson.title || ""}" placeholder="Lesson Title" />
 
-    <label>Video URL (embed)</label>
-    <input type="text" class="lesson-video" value="${lesson.video || ""}" />
+    <input type="text" class="lesson-video" value="${lesson.video || ""}" placeholder="Video URL" />
 
-    <label>Duration</label>
-    <input type="text" class="lesson-duration" value="${
-      lesson.duration || ""
-    }" />
+    <input type="text" class="lesson-duration" value="${lesson.duration || ""}" placeholder="e.g 10:00" />
 
-    <hr />
+    <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()" style="background: #ff4d4d; color: white; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px;">
+        ✕
+    </button>
   `;
 
-  lessonsContainer.appendChild(div);
+  const container = document.getElementById("lessonsContainer");
+  container.appendChild(div);
+
+  // Scroll to bottom
+  container.scrollTop = container.scrollHeight;
 }
 
 function getLessonsFromForm() {
