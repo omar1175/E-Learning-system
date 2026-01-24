@@ -221,10 +221,6 @@
           <textarea id="description"></textarea>
           <span class="error" id="descriptionError"></span>
 
-          <label>Image URL</label>
-          <input type="text" id="image" />
-          <span class="error" id="imageError"></span>
-
           <label>Category</label>
           <select id="categorySelect"></select>
           <span class="error" id="categoryError"></span>
@@ -235,6 +231,19 @@
 
           <label>Instructor Bio</label>
           <textarea id="instructorBio"></textarea>
+          <!-- ===== LESSONS SECTION ===== -->
+          <hr />
+          <h3>Lessons</h3>
+
+          <div id="lessonsContainer"></div>
+
+          <button
+            type="button"
+            class="btn btn-outline"
+            onclick="addLessonField()"
+          >
+            + Add Lesson
+          </button>
 
           <div class="actions">
             <button type="submit" class="btn btn-primary">Save</button>

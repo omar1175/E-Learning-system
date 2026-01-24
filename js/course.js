@@ -14,18 +14,24 @@ function saveCourses(courses) {
     const initialCourses = [
       {
         id: Date.now(),
-        title: "Advanced Python",
-        description: "Take your Python skills to the next level.",
-        image: "https://picsum.photos/300/200?random=6",
-        category: "python",
-        instructor: "Mohamed Samir",
-        instructorBio: "Senior Python developer.",
+        title: "Complete Web Development Bootcamp",
+        description:
+          "Master HTML, CSS, JavaScript, and modern web development from scratch",
+        category: "web",
+        instructor: "Sohyla Gomaa",
+        instructorBio: "Full Stack Developer",
         lessons: [
           {
             id: 1,
-            title: "Functions & Modules",
-            video: "",
-            content: "Advanced Python functions",
+            title: "1. Introduction to HTML - Web Structure",
+            video: "https://www.youtube.com/embed/qz0aGYrrlhU",
+            duration: "15:30",
+          },
+          {
+            id: 2,
+            title: "2. CSS Fundamentals - Styling Your Pages",
+            video: "https://www.youtube.com/embed/1PnVor36_40",
+            duration: "20:45",
           },
         ],
       },
@@ -56,6 +62,45 @@ function renderCourses() {
   });
 }
 renderCourses();
+///
+const lessonsContainer = document.getElementById("lessonsContainer");
+
+function addLessonField(lesson = {}) {
+  const div = document.createElement("div");
+  div.classList.add("lesson-item");
+
+  div.innerHTML = `
+    <label>Lesson Title</label>
+    <input type="text" class="lesson-title" value="${lesson.title || ""}" />
+
+    <label>Video URL (embed)</label>
+    <input type="text" class="lesson-video" value="${lesson.video || ""}" />
+
+    <label>Duration</label>
+    <input type="text" class="lesson-duration" value="${
+      lesson.duration || ""
+    }" />
+
+    <hr />
+  `;
+
+  lessonsContainer.appendChild(div);
+}
+
+function getLessonsFromForm() {
+  const lessons = [];
+  document.querySelectorAll(".lesson-item").forEach((item, index) => {
+    lessons.push({
+      id: Date.now() + index,
+      title: item.querySelector(".lesson-title").value,
+      video: item.querySelector(".lesson-video").value,
+      duration: item.querySelector(".lesson-duration").value,
+    });
+  });
+  return lessons;
+}
+
+///
 //delete functionality
 function deleteCourse(id) {
   if (!confirm("Are you sure you want to delete this course?")) return;
@@ -75,6 +120,7 @@ function openAddForm() {
   formTitle.textContent = "Add Course";
   document.getElementById("courseForm").reset();
   document.getElementById("courseId").value = "";
+  lessonsContainer.innerHTML = "";
   clearErrors();
   populateCategoryDropdown();
   modal.classList.remove("hidden");
@@ -86,12 +132,14 @@ function openEditForm(course) {
   courseId.value = course.id;
   title.value = course.title;
   description.value = course.description;
-  image.value = course.image;
+  //image.value = course.image;
   instructor.value = course.instructor;
   instructorBio.value = course.instructorBio;
   clearErrors();
   populateCategoryDropdown();
   categorySelect.value = course.category;
+  lessonsContainer.innerHTML = "";
+  course.lessons.forEach((lesson) => addLessonField(lesson));
   modal.classList.remove("hidden");
 }
 //for closing courses add/edit form
@@ -116,11 +164,6 @@ function validateForm() {
     valid = false;
   }
 
-  if (!image.value.trim()) {
-    imageError.textContent = "Image URL is required";
-    valid = false;
-  }
-
   if (!categorySelect.value.trim()) {
     categoryError.textContent = "Category is required";
     valid = false;
@@ -128,6 +171,10 @@ function validateForm() {
 
   if (!instructor.value.trim()) {
     instructorError.textContent = "Instructor name is required";
+    valid = false;
+  }
+  if (getLessonsFromForm().length === 0) {
+    alert("Please add at least one lesson");
     valid = false;
   }
 
@@ -142,27 +189,29 @@ document.getElementById("courseForm").addEventListener("submit", function (e) {
 
   const courses = getCourses();
   const id = courseId.value;
+  const lessons = getLessonsFromForm();
 
   if (id) {
     // EDIT
     const course = courses.find((c) => c.id == id);
     course.title = title.value;
     course.description = description.value;
-    course.image = image.value;
+    //course.image = image.value;
     course.category = categorySelect.value;
     course.instructor = instructor.value;
     course.instructorBio = instructorBio.value;
+    course.lessons = lessons;
   } else {
     // ADD
     courses.push({
       id: Date.now(),
       title: title.value,
       description: description.value,
-      image: image.value,
+      //image: image.value,
       category: categorySelect.value,
       instructor: instructor.value,
       instructorBio: instructorBio.value,
-      lessons: [],
+      lessons: lessons,
     });
   }
 
