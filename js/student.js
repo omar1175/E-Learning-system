@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!user) {
     alert("Please login first.");
-    window.location.href = "login.html";
+    window.location.href = "auth.html"; // Changed to auth.html to match your structure
     return;
   }
 
@@ -95,6 +95,18 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Update keys if email changed
+    if (newEmail !== user.email) {
+      // Move enrollments to new key
+      const oldKey = `enrolledCourses_${user.email}`;
+      const newKey = `enrolledCourses_${newEmail}`;
+      const oldData = localStorage.getItem(oldKey);
+      if (oldData) {
+        localStorage.setItem(newKey, oldData);
+        localStorage.removeItem(oldKey);
+      }
+    }
+
     user.firstName = newFirstName;
     user.lastName = newLastName;
     user.email = newEmail;
@@ -112,27 +124,54 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -------------------------
-  // Render Enrolled Courses
+  // Render Enrolled Courses (UPDATED)
   // -------------------------
   const enrolledGrid = document.getElementById("enrolledCoursesGrid");
 
   function renderEnrolledCourses() {
     enrolledGrid.innerHTML = "";
-    if (!user.enrolledCourses || user.enrolledCourses.length === 0) {
-      enrolledGrid.innerHTML =
-        "<p>You haven't enrolled in any courses yet.</p>";
+
+    // 1️⃣ CHANGE: Read from the specific user key
+    const userEnrollmentsKey = `enrolledCourses_${user.email}`;
+    const enrolledCourses =
+      JSON.parse(localStorage.getItem(userEnrollmentsKey)) || [];
+
+    if (enrolledCourses.length === 0) {
+      enrolledGrid.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+            <p style="font-size: 1.2em; color: #666;">You haven't enrolled in any courses yet.</p>
+            <a href="index.html" class="btn btn-primary" style="margin-top: 15px;">Browse Courses</a>
+        </div>`;
       return;
     }
 
-    user.enrolledCourses.forEach((course) => {
+    // 2️⃣ CHANGE: Render cards using the new data structure
+    enrolledCourses.forEach((course) => {
       const card = document.createElement("div");
-      card.className = "course-card";
+      card.className = "course-card"; // Ensure this matches your CSS
+
+      // Calculate progress if available (default to 0)
+      const progress = course.progress || 0;
+
       card.innerHTML = `
-        <img src="${course.image}" alt="${course.title}">
-        <div class="course-card-content">
-          <h3>${course.title}</h3>
-          <p>${course.description || ""}</p>
-          <a href="course-details.html?id=${course.id}" class="btn btn-primary">View Course</a>
+        <div style="position: relative;">
+            <img src="${course.image}" alt="${course.title}" style="width: 100%; height: 180px; object-fit: cover;">
+            <span style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.8em;">
+                ${course.category || "Course"}
+            </span>
+        </div>
+        <div class="course-card-content" style="padding: 20px;">
+          <h3 style="margin-bottom: 10px;">${course.title}</h3>
+          <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">Instructor: ${course.instructor || "Expert"}</p>
+          
+          <div style="background: #eee; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 15px;">
+             <div style="width: ${progress}%; background: #28a745; height: 100%;"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9em; margin-bottom: 15px;">
+             <span>${progress}% Complete</span>
+          </div>
+
+          <a href="course-details.html?id=${course.id}" class="btn btn-primary" style="display: block; text-align: center;">Continue Learning</a>
         </div>
       `;
       enrolledGrid.appendChild(card);
@@ -142,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderEnrolledCourses();
 
   // -------------------------
-  // Render Wishlist
+  // Render Wishlist (Kept as is, but assuming it stays in user object)
   // -------------------------
   const wishlistGrid = document.getElementById("wishlistGrid");
 

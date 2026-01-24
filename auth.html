@@ -84,6 +84,22 @@
         <a href="#" id="showLogin">Already have an account? Login</a>
         <a href="#" id="showRegister">New? Register</a>
       </p>
+      <div
+        style="
+          text-align: center;
+          margin-top: 15px;
+          padding-top: 15px;
+          border-top: 1px solid #eee;
+        "
+      >
+        <a
+          href="index.html"
+          onclick="localStorage.removeItem('loggedInUserEmail')"
+          style="text-decoration: none; color: #555; font-size: 14px"
+        >
+          Continue as Guest &rarr;
+        </a>
+      </div>
     </div>
 
     <script src="js/auth.js"></script>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Learning Course Platform</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/playlist.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container navbar">
+        <a href="index.html" class="logo">E-Learning</a>
+
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="courses.html">Courses</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="auth-links" id="authLinks">
+          <a href="auth.html#registerForm" id="loginBtn">Login</a>
+          <a href="auth.html#loginForm" id="registerBtn" class="btn btn-primary"
+            >Sign Up</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="header">
+        <h1 id="courseTitle">Loading Course...</h1>
+        <div class="course-info">
+          <p id="courseDescription">Course description will appear here</p>
+          <div id="certifiedBadge" class="certified-badge">✓ CERTIFIED</div>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <div class="progress-header">
+          <div class="progress-text">
+            Course Progress:
+            <span id="progressStats">0/0 videos completed</span>
+          </div>
+          <button
+            id="viewCertBtn"
+            class="certificate-button"
+            onclick="viewMyCertificate()"
+          >
+            <span>🎓</span>
+            <span>View My Certificate</span>
+          </button>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progressBar">0%</div>
+        </div>
+      </div>
+
+      <div class="content-wrapper" id="contentWrapper">
+  <div class="video-section">
+    <div class="video-container">
+      <iframe
+        id="videoPlayer"
+        src=""
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+        allowfullscreen
+      ></iframe>
+    </div>
+    
+    <div class="video-header">
+      <div class="video-title" id="currentVideoTitle">
+        Select a video to start learning
+      </div>
+      <div class="video-controls">
+        <button id="prevBtn" class="nav-btn" onclick="playPrevVideo()">
+          ← Previous
+        </button>
+        <button id="nextBtn" class="nav-btn" onclick="playNextVideo()">
+          Next →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="playlist-section">
+    <h2>Course Playlist</h2>
+    <div id="playlistContainer"></div>
+  </div>
+</div>
+       
+
+    <div id="formModal" class="modal-overlay">
+      <div class="form-modal">
+        <div class="emoji">🎉</div>
+        <h2>Congratulations!</h2>
+        <p>
+          You've successfully completed the entire course! Please enter your
+          details below to generate your official certificate of completion.
+        </p>
+
+        <form id="certForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="nameInput">Full Name *</label>
+            <input
+              type="text"
+              id="nameInput"
+              required
+              placeholder="Enter your full name"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="emailInput">Email Address (Optional)</label>
+            <input
+              type="email"
+              id="emailInput"
+              placeholder="Enter your email address"
+              autocomplete="email"
+            />
+          </div>
+
+          <button type="submit" class="submit-btn">
+            🎓 Generate My Certificate
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div id="certModal" class="modal-overlay">
+      <div class="certificate-modal">
+        <div class="certificate">
+          <div class="cert-header">
+            <div class="cert-logo">🎓</div>
+            <h1 class="cert-title">CERTIFICATE</h1>
+            <p class="cert-subtitle">OF COMPLETION</p>
+          </div>
+
+          <div class="cert-body">
+            <p class="cert-text">This is to certify that</p>
+            <h2 class="cert-name" id="displayName">Student Name</h2>
+            <p class="cert-text">has successfully completed the course</p>
+            <h3 class="cert-course" id="displayCourse">Course Title</h3>
+            <p class="cert-text">
+              demonstrating dedication, commitment, and excellence in learning
+            </p>
+          </div>
+
+          <div class="cert-footer">
+            <div class="cert-signature">
+              <div class="signature-line">Course Instructor</div>
+              <p class="cert-date" id="displayDate">Date</p>
+            </div>
+            <div class="cert-signature">
+              <div class="signature-line">Platform Director</div>
+              <p class="cert-date">E-Learning Academy</p>
+            </div>
+          </div>
+
+          <div class="cert-id">
+            Certificate ID: <span id="displayId">CERT-XXXXXX</span>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="action-btn download-btn" onclick="printCertificate()">
+            📥 Download PDF
+          </button>
+          <button class="action-btn close-btn" onclick="closeCertModal()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>© 2026 E-Learning Platform. All rights reserved.</p>
+    </footer>
+    <script src="js/main.js"></script>
+    <script src="js/playlist.js"></script>
+  </body>
+</html>
