@@ -1,6 +1,3 @@
-/* ================================
-   1. COURSE HERO
-================================ */
 .course-hero {
   background:
     linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
@@ -29,9 +26,6 @@
   font-size: var(--fs-sm);
 }
 
-/* ================================
-   2. COURSE CONTENT
-================================ */
 .course-content {
   background: var(--bg-main);
 }
@@ -74,9 +68,6 @@
   display: block;
 }
 
-/* ================================
-   3. INSTRUCTOR
-================================ */
 .instructor {
   display: flex;
   align-items: center;
@@ -105,9 +96,6 @@
   color: var(--text-muted);
 }
 
-/* ================================
-   4. SYLLABUS / LESSONS
-================================ */
 .course-lessons ul {
   list-style: none;
   padding-left: 0;
@@ -127,9 +115,6 @@
   margin-bottom: 5px;
 }
 
-/* ================================
-   5. REVIEWS
-================================ */
 .review {
   background: var(--bg-white);
   padding: 15px 20px;
@@ -142,9 +127,6 @@
   color: var(--primary);
 }
 
-/* ================================
-   6. ENROLL BUTTON / CTA
-================================ */
 .course-cta {
   text-align: center;
   margin-top: 30px;
@@ -155,9 +137,6 @@
   font-size: var(--fs-md);
 }
 
-/* ================================
-   7. RESPONSIVE
-================================ */
 @media (max-width: 768px) {
   .course-hero {
     text-align: center;

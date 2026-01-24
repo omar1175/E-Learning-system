@@ -1,6 +1,4 @@
-// admin.js: Admin dashboard logic - manage students, approve/reject enrollments
 const studentsTableBody = document.getElementById("studentsTableBody");
-// dashboard counters
 const USERS_KEY = "users";
 
 function getUsers() {
@@ -22,8 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateDashboardCounters();
 });
-
-//track student progress
 
 function renderStudentsProgress() {
   const students = getUsers().filter((u) => u.role === "student");

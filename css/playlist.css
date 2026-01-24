@@ -158,7 +158,6 @@
   background: #d4edda;
   border-color: #28a745;
 }
-/* Container for Title and Buttons */
 .video-header {
   display: flex;
   justify-content: space-between;
@@ -170,22 +169,19 @@
   gap: 15px;
 }
 
-/* Update existing video-title to remove margins/background */
 .video-title {
   color: white;
   font-size: 20px;
   margin: 0;
   padding: 0;
-  background: none; /* Remove old background since parent has it */
+  background: none;
 }
 
-/* Button Group */
 .video-controls {
   display: flex;
   gap: 10px;
 }
 
-/* Button Styles */
 .nav-btn {
   background: rgba(255, 255, 255, 0.2);
   color: white;
@@ -211,7 +207,6 @@
   cursor: not-allowed;
 }
 
-/* Mobile Layout */
 @media (max-width: 768px) {
   .video-header {
     flex-direction: column;
@@ -279,7 +274,6 @@
   transform: scale(1.05);
 }
 
-/* MODALS */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -496,7 +490,6 @@
   }
 }
 
-/* PRINT STYLES - Hides everything except the certificate */
 @media print {
   body * {
     visibility: hidden;

@@ -1,44 +1,27 @@
-/* ================================
-   1. GLOBAL VARIABLES (DESIGN SYSTEM)
-================================ */
 :root {
-  /* Colors */
   --primary: #4f46e5;
   --primary-dark: #4338ca;
   --secondary: #22c55e;
   --danger: #ef4444;
-
   --bg-main: #f5f7fb;
   --bg-white: #ffffff;
   --bg-dark: #0f172a;
-
   --text-main: #1e293b;
   --text-muted: #64748b;
   --text-light: #f8fafc;
-
-  /* Typography */
   --font-main: "Inter", system-ui, sans-serif;
-
   --fs-xl: 3rem;
   --fs-lg: 2rem;
   --fs-md: 1.2rem;
   --fs-sm: 0.95rem;
-
-  /* Spacing */
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
-
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.12);
-
-  /* Transition */
   --transition: 0.3s ease;
 }
 
-/* ================================
-   2. RESET & BASE STYLES
-================================ */
 *,
 *::before,
 *::after {
@@ -65,9 +48,6 @@ img {
   display: block;
 }
 
-/* ================================
-   3. LAYOUT HELPERS
-================================ */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -86,9 +66,6 @@ img {
   display: none;
 }
 
-/* ================================
-   4. BUTTONS (REUSABLE)
-================================ */
 .btn {
   display: inline-block;
   padding: 12px 22px;
@@ -117,9 +94,6 @@ img {
   color: white;
 }
 
-/* ================================
-   5. NAVBAR
-================================ */
 .site-header {
   background: var(--bg-white);
   box-shadow: var(--shadow-sm);
@@ -155,24 +129,20 @@ img {
   margin-left: 16px;
 }
 
-/* ================================
-   6. HERO SECTION
-================================ */
 .hero {
-  background-image: url("../assets/images/Hero.jpg"); /* path to your image */
-  background-size: cover; /* image covers entire section */
-  background-position: center; /* centers the image */
+  background-image: url("../assets/images/Hero.jpg");
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  min-height: 90vh; /* almost full viewport height */
+  min-height: 90vh;
   display: flex;
   align-items: center;
   position: relative;
   color: white;
   text-align: left;
-  padding-left: 50px; /* space from left edge */
+  padding-left: 50px;
 }
 
-/* Optional: dark overlay for text readability */
 .hero::before {
   content: "";
   position: absolute;
@@ -198,9 +168,6 @@ img {
   margin-bottom: 30px;
 }
 
-/* ================================
-   7. FEATURES SECTION
-================================ */
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -223,9 +190,6 @@ img {
   margin-bottom: 10px;
 }
 
-/* ================================
-   8. COURSES SECTION
-================================ */
 .course-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -265,9 +229,6 @@ img {
   margin-bottom: 14px;
 }
 
-/* ================================
-   9. CTA SECTION
-================================ */
 .cta {
   background: var(--bg-dark);
   color: var(--text-light);
@@ -285,9 +246,6 @@ img {
   margin-bottom: 30px;
 }
 
-/* ================================
-   10. FOOTER
-================================ */
 footer {
   background: #020617;
   color: #94a3b8;
@@ -296,9 +254,6 @@ footer {
   font-size: var(--fs-sm);
 }
 
-/* ================================
-   11. RESPONSIVE TWEAKS
-================================ */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2.2rem;
@@ -315,9 +270,6 @@ footer {
   }
 }
 
-/* ================================
-   WISHLIST BUTTON
-================================ */
 .wishlist-btn,
 #wish {
   display: inline-flex;
@@ -354,10 +306,9 @@ footer {
   border-color: var(--text-muted);
 }
 
-/* Optional: Add heart icon before text */
 .wishlist-btn::before,
 #wish::before {
-  content: "♥"; /* heart icon */
+  content: "♥";
   font-size: 1rem;
   color: var(--secondary);
 }

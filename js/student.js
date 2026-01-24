@@ -1,27 +1,16 @@
-// ==============================
-// Student Dashboard Logic
-// ==============================
+// student dashboard
 document.addEventListener("DOMContentLoaded", () => {
-  // Get users and logged in user
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const email = localStorage.getItem("loggedInUserEmail");
   const user = users.find((u) => u.email === email);
 
   if (!user) {
     alert("Please login first.");
-    window.location.href = "auth.html"; // Changed to auth.html to match your structure
-    return;
+    window.location.href = "auth.html";
   }
 
-  // -------------------------
-  // Welcome message
-  // -------------------------
   const welcomeUser = document.getElementById("welcomeUser");
   if (welcomeUser) welcomeUser.textContent = `Hi, ${user.firstName}`;
-
-  // -------------------------
-  // Sidebar tab switching
-  // -------------------------
   const sidebarBtns = document.querySelectorAll(".sidebar-btn");
   const tabs = document.querySelectorAll(".tab-content");
 
@@ -36,9 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // -------------------------
-  // Profile Section
-  // -------------------------
   const profilePic = document.getElementById("profilePic");
   const profilePicInput = document.getElementById("profilePicInput");
   const editFirstName = document.getElementById("editFirstName");
@@ -48,14 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveProfileBtn = document.getElementById("saveProfileBtn");
   const profileMsg = document.getElementById("profileMsg");
 
-  // Load profile data
   editFirstName.value = user.firstName;
   editLastName.value = user.lastName;
   editEmail.value = user.email;
 
   if (user.profilePic) profilePic.src = user.profilePic;
 
-  // Upload profile picture
   profilePicInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -73,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
     reader.readAsDataURL(file);
   });
 
-  // Save profile changes
   saveProfileBtn.addEventListener("click", () => {
     const newFirstName = editFirstName.value.trim();
     const newLastName = editLastName.value.trim();
@@ -95,9 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Update keys if email changed
     if (newEmail !== user.email) {
-      // Move enrollments to new key
       const oldKey = `enrolledCourses_${user.email}`;
       const newKey = `enrolledCourses_${newEmail}`;
       const oldData = localStorage.getItem(oldKey);
@@ -118,20 +99,16 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("users", JSON.stringify(updatedUsers));
 
     profileMsg.style.color = "green";
-    profileMsg.textContent = "Profile updated successfully! ✅";
+    profileMsg.textContent = "Profile updated successfully! ";
 
     if (welcomeUser) welcomeUser.textContent = `Hi, ${user.firstName}`;
   });
 
-  // -------------------------
-  // Render Enrolled Courses (UPDATED)
-  // -------------------------
   const enrolledGrid = document.getElementById("enrolledCoursesGrid");
 
   function renderEnrolledCourses() {
     enrolledGrid.innerHTML = "";
 
-    // 1️⃣ CHANGE: Read from the specific user key
     const userEnrollmentsKey = `enrolledCourses_${user.email}`;
     const enrolledCourses =
       JSON.parse(localStorage.getItem(userEnrollmentsKey)) || [];
@@ -145,12 +122,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 2️⃣ CHANGE: Render cards using the new data structure
     enrolledCourses.forEach((course) => {
       const card = document.createElement("div");
-      card.className = "course-card"; // Ensure this matches your CSS
+      card.className = "course-card";
 
-      // Calculate progress if available (default to 0)
       const progress = course.progress || 0;
 
       card.innerHTML = `
@@ -180,9 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderEnrolledCourses();
 
-  // -------------------------
-  // Render Wishlist (Kept as is, but assuming it stays in user object)
-  // -------------------------
   const wishlistGrid = document.getElementById("wishlistGrid");
 
   function renderWishlist() {
@@ -220,9 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderWishlist();
 
-  // -------------------------
-  // Logout
-  // -------------------------
   const logoutBtns = [
     document.getElementById("logoutBtn"),
     document.getElementById("logoutSidebarBtn"),

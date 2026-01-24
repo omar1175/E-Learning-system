@@ -1,4 +1,3 @@
-// Global State
 const state = {
   courseData: null,
   completedVideos: [],
@@ -6,12 +5,10 @@ const state = {
   certificate: null,
 };
 
-// Initialize App
 document.addEventListener("DOMContentLoaded", () => {
   loadCourseData();
 });
 
-// Sample Course Data
 function loadSampleData() {
   const sampleCourse = {
     title: "Complete Web Development Bootcamp",
@@ -50,7 +47,6 @@ function loadSampleData() {
   loadCourseData();
 }
 
-// Storage Functions
 function saveToStorage(data) {
   localStorage.setItem("eLearningCourse", JSON.stringify(data));
 }
@@ -60,7 +56,6 @@ function getFromStorage() {
   return data ? JSON.parse(data) : null;
 }
 
-// Load Course Data
 function loadCourseData() {
   const stored = getFromStorage();
 
@@ -82,7 +77,6 @@ function loadCourseData() {
   checkCertificateStatus();
 }
 
-// Empty State
 function showEmptyState() {
   document.getElementById("contentWrapper").innerHTML = `
                 <div class="empty-state" style="grid-column: 1/-1;">
@@ -97,8 +91,6 @@ function showEmptyState() {
   document.getElementById("courseDescription").textContent =
     "Please load a course to begin";
 }
-
-// Display Course
 function displayCourse() {
   document.getElementById("courseTitle").textContent = state.courseData.title;
   document.getElementById("courseDescription").textContent =
@@ -109,9 +101,6 @@ function displayCourse() {
 
   state.courseData.videos.forEach((video, index) => {
     const isCompleted = state.completedVideos.includes(index);
-
-    // REMOVED: const isActive = ...
-    // We let playVideo(0) handle the active class later so it syncs with the player.
 
     const item = document.createElement("div");
     item.className = `playlist-item ${isCompleted ? "completed" : ""}`;
@@ -129,23 +118,19 @@ function displayCourse() {
     playlistContainer.appendChild(item);
   });
 
-  // ADDED: Select the first video by default
-  // This loads the iframe source, highlights the item, and sets button states.
   if (state.courseData.videos.length > 0) {
     playVideo(0);
   }
 
   updateProgress();
 }
-// Play Video
+
 function playVideo(index) {
   state.currentVideoIndex = index;
   const video = state.courseData.videos[index];
 
   document.getElementById("videoPlayer").src = video.url;
   document.getElementById("currentVideoTitle").textContent = video.title;
-
-  // Update UI Highlight
   document.querySelectorAll(".playlist-item").forEach((item, i) => {
     item.classList.remove("active");
     if (i === index) {
@@ -153,23 +138,16 @@ function playVideo(index) {
     }
   });
 
-  // Mark as completed immediately when clicked/played
   markAsCompleted(index);
 }
-
-// Mark as Completed
 function markAsCompleted(index) {
   if (!state.completedVideos.includes(index)) {
     state.completedVideos.push(index);
-
-    // Save progress
     const stored = getFromStorage();
     if (stored) {
       stored.completed = state.completedVideos;
       saveToStorage(stored);
     }
-
-    // Visual update
     const items = document.querySelectorAll(".playlist-item");
     if (items[index]) {
       items[index].classList.add("completed");
@@ -179,7 +157,6 @@ function markAsCompleted(index) {
   }
 }
 
-// Update Progress & Trigger Certificate
 function updateProgress() {
   if (!state.courseData) return;
 
@@ -193,10 +170,8 @@ function updateProgress() {
   progressBar.style.width = percentage + "%";
   progressBar.textContent = percentage + "%";
 
-  // Check if course completed and certificate NOT yet generated
   if (completed === total && total > 0) {
     if (!state.certificate) {
-      // Small delay to allow user to realize they hit 100%
       setTimeout(() => {
         showCertificateForm();
       }, 1000);
@@ -206,14 +181,10 @@ function updateProgress() {
   }
 }
 
-// Show Certificate Form
 function showCertificateForm() {
-  // Only show if not already showing
   const formModal = document.getElementById("formModal");
   if (!formModal.classList.contains("active")) {
     formModal.classList.add("active");
-
-    // Pre-fill if some data exists
     if (state.certificate) {
       document.getElementById("nameInput").value = state.certificate.name || "";
       document.getElementById("emailInput").value =
@@ -222,7 +193,6 @@ function showCertificateForm() {
   }
 }
 
-// Handle Form Submit
 function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -233,8 +203,6 @@ function handleFormSubmit(event) {
     alert("Please enter your name");
     return;
   }
-
-  // Generate Certificate Data
   const today = new Date();
   const certData = {
     name: name,
@@ -254,21 +222,17 @@ function handleFormSubmit(event) {
   };
 
   state.certificate = certData;
-
-  // Save to storage
   const stored = getFromStorage();
   if (stored) {
     stored.certificate = certData;
     saveToStorage(stored);
   }
 
-  // Close form and show certificate
   document.getElementById("formModal").classList.remove("active");
   displayCertificate();
   checkCertificateStatus();
 }
 
-// Display Certificate Modal
 function displayCertificate() {
   if (!state.certificate) return;
 
@@ -281,25 +245,21 @@ function displayCertificate() {
   document.getElementById("certModal").classList.add("active");
 }
 
-// View My Certificate (Button Click)
 function viewMyCertificate() {
   if (state.certificate) {
     displayCertificate();
   }
 }
 
-// Close Certificate Modal
 function closeCertModal() {
   document.getElementById("certModal").classList.remove("active");
   document.getElementById("formModal").classList.remove("active");
 }
 
-// Print Certificate
 function printCertificate() {
   window.print();
 }
 
-// Check Certificate Status (Updates UI Badges/Buttons)
 function checkCertificateStatus() {
   const viewBtn = document.getElementById("viewCertBtn");
   const badge = document.getElementById("certifiedBadge");
@@ -313,14 +273,11 @@ function checkCertificateStatus() {
   }
 }
 
-// Keyboard shortcuts
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closeCertModal();
   }
 });
-
-// --- ADD THESE NEW FUNCTIONS ---
 
 function playNextVideo() {
   if (state.currentVideoIndex < state.courseData.videos.length - 1) {
@@ -338,28 +295,20 @@ function updateNavButtons() {
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
 
-  // Safety check if elements exist
   if (!prevBtn || !nextBtn) return;
 
-  // Disable 'Previous' on first video
   prevBtn.disabled = state.currentVideoIndex === 0;
 
-  // Disable 'Next' on last video
   nextBtn.disabled =
     state.currentVideoIndex === state.courseData.videos.length - 1;
 }
-
-// --- UPDATE YOUR EXISTING playVideo FUNCTION ---
 
 function playVideo(index) {
   state.currentVideoIndex = index;
   const video = state.courseData.videos[index];
 
-  // Update Player
   document.getElementById("videoPlayer").src = video.url;
   document.getElementById("currentVideoTitle").textContent = video.title;
-
-  // Highlight active item
   document.querySelectorAll(".playlist-item").forEach((item, i) => {
     item.classList.remove("active");
     if (i === index) {
@@ -367,11 +316,9 @@ function playVideo(index) {
     }
   });
 
-  // Mark as completed
   if (!state.completedVideos.includes(index)) {
     markAsCompleted(index);
   }
 
-  // NEW: Update buttons whenever video changes
   updateNavButtons();
 }

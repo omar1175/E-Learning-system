@@ -4,7 +4,6 @@
   background: var(--bg-main);
 }
 
-/* Sidebar */
 .sidebar {
   width: 220px;
   background: var(--bg-white);
@@ -42,7 +41,6 @@
   color: var(--bg-white);
 }
 
-/* Main content */
 .dashboard-content {
   flex: 1;
   padding: 40px;

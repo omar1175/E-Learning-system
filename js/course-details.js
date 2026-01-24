@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const hero = document.getElementById("courseHero");
   const content = document.getElementById("courseContent");
 
-  // 1️⃣ Get course ID from URL
   const params = new URLSearchParams(window.location.search);
   const courseId = Number(params.get("id"));
 
@@ -17,16 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // 2️⃣ Get Data (Unified DB -> Fallback)
+  // get Data
   let course;
   let unifiedData = JSON.parse(localStorage.getItem("eLearningData"));
 
-  // Try finding in Unified DB first
   if (unifiedData && unifiedData.courses) {
     course = unifiedData.courses.find((c) => c.id === courseId);
   }
 
-  // Fallback to legacy 'courses' array
   if (!course) {
     const legacyCourses = JSON.parse(localStorage.getItem("courses")) || [];
     course = legacyCourses.find((c) => c.id === courseId);
@@ -37,25 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // 3️⃣ Render Hero Base
   hero.innerHTML = `
     <h1>${course.title}</h1>
     <p>${course.description}</p>
     <div id="heroActionContainer"></div>
   `;
 
-  // 4️⃣ USER & ENROLLMENT CHECK
   const heroActionContainer = document.getElementById("heroActionContainer");
 
-  // ✅ CHECK 1: Who is the active user?
   const userEmail = localStorage.getItem("loggedInUserEmail");
 
-  // ✅ CHECK 2: Get enrollments SPECIFIC to this user
   let isEnrolled = false;
   let userEnrollmentsKey = "";
 
   if (userEmail) {
-    // This key must match what student.js reads!
     userEnrollmentsKey = `enrolledCourses_${userEmail}`;
 
     const userEnrollments =
@@ -63,18 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
     isEnrolled = userEnrollments.some((c) => c.id === courseId);
   }
 
-  // --- BUTTON CREATION LOGIC ---
-
-  // A. Create "Start Learning" Button (For Enrolled Users)
   function createStartButton() {
     const btn = document.createElement("a");
     btn.className = "btn btn-primary";
     btn.textContent = "▶ Start Learning";
-    btn.href = `playlist.html?id=${course.id}`; // Pass ID to player
-    btn.style.backgroundColor = "#28a745"; // Green
+    btn.href = `playlist.html?id=${course.id}`;
+    btn.style.backgroundColor = "#28a745";
 
     btn.addEventListener("click", () => {
-      // Sync 'activeCourseId' for the player
       if (unifiedData) {
         unifiedData.activeCourseId = course.id;
         localStorage.setItem("eLearningData", JSON.stringify(unifiedData));
@@ -83,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return btn;
   }
 
-  // B. Create "Enroll Now" Button (For Logged-in but New Users)
   function createEnrollButton() {
     const btn = document.createElement("a");
     btn.className = "btn btn-primary";
@@ -93,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
 
-      // Safety Check: Double check login status
       const currentEmail = localStorage.getItem("loggedInUserEmail");
       if (!currentEmail) {
         alert("Please login to enroll in courses.");
@@ -101,32 +87,26 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // 1. Get current list for THIS user
       const key = `enrolledCourses_${currentEmail}`;
       const currentEnrolled = JSON.parse(localStorage.getItem(key)) || [];
 
-      // 2. Add Course to Dashboard
       if (!currentEnrolled.some((c) => c.id === course.id)) {
-        // ✨ THIS OBJECT IS WHAT APPEARS IN THE DASHBOARD
         currentEnrolled.push({
           id: course.id,
           title: course.title,
           image: course.image || "https://via.placeholder.com/150",
           instructor: course.instructor || "Expert Instructor",
           category: course.category || "General",
-          progress: 0, // Initialize progress at 0%
+          progress: 0,
           dateEnrolled: new Date().toISOString(),
         });
 
-        // Save back to LocalStorage
         localStorage.setItem(key, JSON.stringify(currentEnrolled));
 
-        // 3. Success Feedback
         alert(
-          `🎉 Success! You have enrolled in ${course.title}. Check your Student Dashboard.`,
+          `Success! You have enrolled in ${course.title}. Check your Student Dashboard.`,
         );
 
-        // 4. Instant UI Update
         heroActionContainer.innerHTML = "";
         heroActionContainer.appendChild(createStartButton());
       } else {
@@ -136,28 +116,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return btn;
   }
 
-  // C. Create "Login to Enroll" Button (For Guests)
   function createLoginButton() {
     const btn = document.createElement("a");
     btn.className = "btn btn-primary";
     btn.textContent = "Login to Enroll";
-    btn.href = "auth.html"; // Redirect to your login page
+    btn.href = "auth.html";
     return btn;
   }
 
-  // --- DECIDE WHICH BUTTON TO SHOW ---
   if (!userEmail) {
-    // Case 1: Guest (Not logged in)
     heroActionContainer.appendChild(createLoginButton());
   } else if (isEnrolled) {
-    // Case 2: User is logged in AND has this course
     heroActionContainer.appendChild(createStartButton());
   } else {
-    // Case 3: User is logged in but NOT enrolled
     heroActionContainer.appendChild(createEnrollButton());
   }
 
-  // 5️⃣ Render Content Tabs (Overview, Syllabus, Reviews)
   content.innerHTML = `
     <div class="course-tabs">
       <button class="tab-btn active" data-tab="overview">Overview</button>
@@ -225,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   `;
 
-  // 6️⃣ Tab Switching Logic
   const tabs = content.querySelectorAll(".tab-btn");
   const tabContents = content.querySelectorAll(".tab-content");
 

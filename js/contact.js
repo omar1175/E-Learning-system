@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Check if EmailJS is loaded
   if (typeof emailjs === "undefined") {
     alert("Error: Email service not available. Please refresh the page.");
     return;
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentUser = null;
 
-  // Pre-fill form if user is logged in
   if (loggedInEmail) {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find((u) => u.email === loggedInEmail);
@@ -31,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = emailInput.value.trim();
     const message = messageInput.value.trim();
 
-    // Validation
     if (!name || !email || !message) {
       alert("Please fill in all fields!");
       return;
@@ -43,13 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
       messageLength: message.length,
     });
 
-    // Show loading state
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = "Sending...";
     submitBtn.disabled = true;
 
-    // Save to LocalStorage
     try {
       const messages =
         JSON.parse(localStorage.getItem("contactMessages")) || [];
@@ -64,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(" LocalStorage error:", error);
     }
 
-    // Send Email via EmailJS
     try {
       const templateParams = {
         from_name: name,
@@ -80,10 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       alert("Message sent successfully! We'll get back to you soon ");
 
-      // Reset form
       form.reset();
 
-      // Refill fields if logged in
       if (currentUser) {
         emailInput.value = currentUser.email;
         emailInput.readOnly = true;
