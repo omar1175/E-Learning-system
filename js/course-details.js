@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const hero = document.getElementById("courseHero");
   const content = document.getElementById("courseContent");
-
+  const role = localStorage.getItem("userRole");
   const params = new URLSearchParams(window.location.search);
   const courseId = Number(params.get("id"));
 
@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createEnrollButton() {
     const btn = document.createElement("a");
+
     btn.className = "btn btn-primary";
     btn.textContent = "Enroll Now";
     btn.href = "#";
@@ -123,15 +124,15 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.href = "auth.html";
     return btn;
   }
-
-  if (!userEmail) {
-    heroActionContainer.appendChild(createLoginButton());
-  } else if (isEnrolled) {
-    heroActionContainer.appendChild(createStartButton());
-  } else {
-    heroActionContainer.appendChild(createEnrollButton());
+  if (role === "student") {
+    if (!userEmail) {
+      heroActionContainer.appendChild(createLoginButton());
+    } else if (isEnrolled) {
+      heroActionContainer.appendChild(createStartButton());
+    } else {
+      heroActionContainer.appendChild(createEnrollButton());
+    }
   }
-
   content.innerHTML = `
     <div class="course-tabs">
       <button class="tab-btn active" data-tab="overview">Overview</button>

@@ -27,11 +27,16 @@ function sendData(courseId) {
     alert(`"${course.title}" is already in your wishlist.`);
     return;
   }
-  user.wishList.push({
-    id: course.id,
-    title: course.title,
-    image: course.image,
-  });
+  if (role === "student") {
+    user.wishList.push({
+      id: course.id,
+      title: course.title,
+      image: course.image,
+    });
+  } else {
+    alert(`must be student to add to wishlist! `);
+    return;
+  }
 
   const updatedUsers = users.map((u) => (u.email === email ? user : u));
   localStorage.setItem("users", JSON.stringify(updatedUsers));
@@ -40,6 +45,7 @@ function sendData(courseId) {
 }
 
 // navbar update based on login
+const role = localStorage.getItem("userRole");
 
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInEmail = localStorage.getItem("loggedInUserEmail");
@@ -48,12 +54,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (loggedInEmail && authLinks) {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find((u) => u.email === loggedInEmail);
-    authLinks.innerHTML = `
+    if (role === "student") {
+      authLinks.innerHTML = `
       <span class="welcome-msg">Hi, ${user.firstName}</span>
       <a href="student.html" class="btn btn-outline">Dashboard</a>
       <button id="logoutBtnNav" class="btn btn-outline">Logout</button>
     `;
-
+    } else {
+      authLinks.innerHTML = `
+      <span class="welcome-msg">Hi, ${user.firstName}</span>
+      <a href="admin.html" class="btn btn-outline">Dashboard</a>
+      <button id="logoutBtnNav" class="btn btn-outline">Logout</button>
+    `;
+    }
     document.getElementById("logoutBtnNav").addEventListener("click", () => {
       localStorage.removeItem("loggedInUserEmail");
       window.location.href = "index.html";
@@ -67,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /////////////////////////////////
+
   const navLinks = document.querySelectorAll(".nav-links a");
   const currentPage = window.location.pathname.split("/").pop();
 
